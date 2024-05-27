@@ -22,6 +22,8 @@ public class TestController {
     @GetMapping("/about")
     public String aboutHandler(Model model) {
         System.out.println("Handling about page");
+        model.addAttribute("name", "Deepak kumar");
+        model.addAttribute("status", false);
         return "about";
     }
     
@@ -29,6 +31,7 @@ public class TestController {
     @GetMapping("/services")
     public String servicesHandler(Model model) {
         System.out.println("Handling services page");
+        model.addAttribute("name", "Deepak kumar");
         return "services";
     }
     

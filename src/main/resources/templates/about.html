@@ -13,11 +13,16 @@
         quis suscipit quasi! Blanditiis unde eum nobis nesciunt numquam, voluptatibus impedit repudiandae ducimus
         possimus.</p>
     <hr>
-    <div data-th-replace="~{common/header::header}">
+    <div data-th-replace="~{common/header::header(${name}, ${status} ? ~{::#login} : ~{::#notlogin})}">
+        <div id="login">
+            <p>User is logged-In</span></p>
+        </div>
+        <div id="notlogin">
+            <p>User is not logged-In</span></p>
+        </div>
+        
     </div>
-    <div data-th-replace="~{common/footer::footerFrag}">
-
-    </div>
+    <div data-th-replace="~{common/footer::footerFrag(${status})}"></div>
 </body>
 
 </html>
