@@ -8,14 +8,19 @@
 </head>
 
 <body>
+    <div data-th-replace="~{fragment/header::header(~{::.navbar},'')}">
+        <div class="navbar">
+            <h4>Code for a navbar</h4>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, facere a cum quidem fugit deleniti veritatis? Quod soluta dolore exercitationem ea, dicta itaque ad ducimus recusandae, consequuntur nisi nulla minima.</p>
+        </div>
+    </div>
     <h1>
-
-        <div data-th-replace="~{common/header::header(${name})}"></div>
         <details title="Services">
             There are some Services of SmartSync Application.
         </details>
     </h1>
     <hr>
+    <div data-th-replace="fragment/footer::footer"></div>
 </body>
 
 </html>
