@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-th-replace="~{fragment/basetemplate::baseTemplate(~{::#main},~{::title},~{::script})}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services Page</title>
 </head>
 
 <body>
-    <div data-th-replace="~{fragment/header::header(~{::.navbar},'')}">
+    <div id="main">
         <div class="navbar">
             <h4>Code for a navbar</h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, facere a cum quidem fugit deleniti veritatis? Quod soluta dolore exercitationem ea, dicta itaque ad ducimus recusandae, consequuntur nisi nulla minima.</p>
@@ -20,7 +17,8 @@
         </details>
     </h1>
     <hr>
-    <div data-th-replace="fragment/footer::footer"></div>
+    <script>
+        console.log("This is services page");
+    </script>
 </body>
-
 </html>

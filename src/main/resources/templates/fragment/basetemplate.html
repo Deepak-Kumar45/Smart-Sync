@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-th-fragment="baseTemplate(body,title,scripts)">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-replace="${title}"></title>
+    <link rel="stylesheet" data-th-href="@{/css/output.css}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" data-th-href="@{links}"> -->
+</head>
+
+<body>
+    <div>
+        <h3>SmartSync header</h3>
+    </div>
+    <div data-th-replace="${body}"></div>
+
+    <div>
+        <h4> SmartSync footer </h4>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+   <div data-th-replace="${scripts}"></div>
+</body>
+
+</html>

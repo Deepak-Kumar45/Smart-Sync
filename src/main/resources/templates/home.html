@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{fragment/basetemplate::baseTemplate(~{::#main},~{::title},~{::script})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSync</title>
+</head>
+<body>
+    <div id="main">
+        <ul>
+            <li><a data-th-href="@{/home}">Home</a></li>
+            <li><a data-th-href="@{/about}">About</a></li>
+            <li><a data-th-href="@{/services}">Services</a></li>
+            <li><a data-th-href="@{/test}">test</a></li>
+        </ul>
+    </div>
+    <script>
+        console.log("This is home page");
+    </script>
+</body>
+</html>
