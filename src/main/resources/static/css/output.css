@@ -137,30 +137,53 @@ pre {
   /* 4 */
 }
 
-.pt-serif-regular {
-  font-family: "PT Serif", serif;
+.merriweather-light {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.merriweather-light-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.merriweather-regular {
+  font-family: "Merriweather", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.pt-serif-bold {
-  font-family: "PT Serif", serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.pt-serif-regular-italic {
-  font-family: "PT Serif", serif;
+.merriweather-regular-italic {
+  font-family: "Merriweather", serif;
   font-weight: 400;
   font-style: italic;
 }
 
-.pt-serif-bold-italic {
-  font-family: "PT Serif", serif;
+.merriweather-bold {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.merriweather-bold-italic {
+  font-family: "Merriweather", serif;
   font-weight: 700;
   font-style: italic;
 }
 
+.merriweather-black {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.merriweather-black-italic {
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  font-style: italic;
+}
 
 /*
 Add the correct font size in all browsers.
