@@ -32,5 +32,11 @@ public class TestController {
         System.out.println("Handling services page");
         return "services";
     }
+    // Services test controller
+    @GetMapping("/contactus")
+    public String contactHandler(Model model) {
+        System.out.println("Handling contact page");
+        return "contact";
+    }
     
 }
