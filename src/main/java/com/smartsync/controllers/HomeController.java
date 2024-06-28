@@ -11,4 +11,11 @@ public class HomeController {
         System.out.println("Home page handler..");
         return "home";
     }
+
+    @GetMapping({"/sign-up"})
+    public String showSignPage(){
+        System.out.println("Showing sign-up page");
+        return "sign-up-page";
+    }
+    
 }
