@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-th-fragment="baseTemplate(body,title,scripts)" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- custom title changed by child template -->
+    <title data-th-replace="${title}"></title>
+    
+    <link rel="stylesheet" data-th-href="@{/css/output.css}">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <!-- navbar -->
+    <div data-th-replace="~{navbar::smartsync-navbar}"></div>
+    
+    <!-- main content div replaced by child template -->
+    <div id="main-div" data-th-replace="${body}"></div>
+
+    <!--  footer -->
+    <footer data-th-replace="~{footer::smart-sync-footer}"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+    <!-- Additional script tags -->
+    <data-th-block data-th-replace="${scripts}"></data-th-block>
+</body>
+</html>
