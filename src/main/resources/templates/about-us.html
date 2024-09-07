@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Adding header using fragment -->
+    <div data-th-replace="~{common/header::header(var1='Deepak',var2='Kumar',content=~{::p})}">
+        <p>This is my dynamic content</p>
+    </div>
+    <h2>This is about page</h2>
+    
+    <div data-th-replace="~{common/footer::footer}"></div>
+</body>
+</html>

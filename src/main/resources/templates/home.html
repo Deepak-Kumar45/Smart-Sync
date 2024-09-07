@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" data-th-href="@{/css/output.css}">
+</head>
+
+<body class="bg-gray-400">
+    <!-- Header added by using fragments -->
+    <div
+        data-th-replace="${#strings.equals('admin', val)} ? ~{common/success::success(~{::#suc})} : ~{common/error-page::error} ">
+        <div id="suc">
+            <h2>this is admin login</h2>
+            <h2 class="text-center text-2xl">Home Page</h2>
+            <h4 class="text-md">User name: <span data-th-text="${Name}"></span></h4>
+            <p class="">Email: <span data-th-text="${Email}"></span></p>
+            <a data-th-href="${link}" target="_blank">Goto github Page</a>
+        </div>
+    </div>
+
+
+    <form action="showAdmin">
+        value = <input type="text" placeholder="enter value" name="val">
+        <input type="submit">
+    </form>
+
+    <!-- Footer added using fragments -->
+    <div data-th-replace="~{common/footer::footer}"></div>
+</body>
+
+</html>
