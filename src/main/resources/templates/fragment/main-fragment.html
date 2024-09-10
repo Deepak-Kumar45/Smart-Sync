@@ -20,7 +20,9 @@
     <div data-th-replace="~{navbar::smartsync-navbar}"></div>
     
     <!-- main content div replaced by child template -->
-    <div id="main-div" data-th-replace="${body}"></div>
+     <div class="p-4">
+         <div id="main-div" data-th-replace="${body}"></div>
+    </div>
 
     <!--  footer -->
     <footer data-th-replace="~{footer::smart-sync-footer}"></footer>

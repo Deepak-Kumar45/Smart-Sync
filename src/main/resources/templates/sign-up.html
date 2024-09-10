@@ -2,8 +2,6 @@
 <html lang="en" data-th-replace="~{fragment/main-fragment::baseTemplate(~{::#content},~{::title},~{})}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Sign-up</title>
 </head>
 
@@ -11,12 +9,12 @@
     <div id="content">
         <div class="grid grid-cols-12">
             <div class="col-span-1 md:col-span-2"></div>
-            <div class="col-span-1 hidden md:block md:col-span-4 bg-indigo-600 py-6 px-6 ">
-                <img src="@{/images/signup.jpg}" alt="no images found">
+            <div class="col-span-12 lg:col-span-5 xl:col-span-5 hidden md:block md:col-span-5 py-6 px-6 ">
+                <img data-th-src="@{images/signup.jpg}" alt="no pic found">
             </div>
-            <div class="col-span-10 md:col-span-4">
+            <div class="col-span-10 md:col-span-5">
                 <div
-                    class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                    class="md:mt-0 sm:max-w-md xl:p-0 ">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1
                             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
@@ -54,25 +52,21 @@
                                         required="">
                                 </div>
                                 <div class="ml-3 text-sm">
-                                    <label for="terms" class="font-light text-gray-500 dark:text-gray-300">I accept the
-                                        <a class="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                                            href="#">Terms
-                                            and Conditions</a></label>
+                                    <label for="terms" class="font-medium text-gray-800 dark:text-gray-300">I accept the
+                                        <a class="font-medium text-blue-700 hover:underline dark:text-blue-700"
+                                            href="#">Terms and Conditions</a></label>
                                 </div>
                             </div>
-                            <button type="submit"
-                                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create
-                                an account</button>
-                            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                                <button type="submit" class="w-full text-white bg-blue-800 hover:bg-blue-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create an account</button>
+                            <p class="font-medium text-gray-700 dark:text-gray-700">
                                 Already have an account? <a href="#"
-                                    class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login
+                                    class="font-medium text-blue-700 underline dark:text-blue-700">Login
                                     here</a>
                             </p>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="md:col-span-2"></div>
         </div>
 
     </div>
