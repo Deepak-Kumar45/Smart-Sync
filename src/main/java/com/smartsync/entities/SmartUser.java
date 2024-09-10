@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -48,11 +49,12 @@ public class SmartUser {
     private boolean isPhoneNumberVarified;
     private boolean isMailVarified;
 
+    @Enumerated
     private Providers provider = Providers.SELF;
     private String providerId;
 
     // concacts of user
-    @OneToMany(mappedBy = "smartUser",cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Contact> contacts= new ArrayList<>();
+    @OneToMany(mappedBy = "smartUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Contact> contacts = new ArrayList<>();
 
 }
