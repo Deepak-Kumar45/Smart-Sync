@@ -1,11 +1,17 @@
 package com.smartsync.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.smartsync.dto.SignupDTO;
+
 
 
 @Controller
-public class HomeController {
+public class DirectionController {
 
     @GetMapping({"/","/home"})
     public String home() {
@@ -38,9 +44,9 @@ public class HomeController {
     }
 
     @GetMapping("/sign-up")
-    public String signUp() {
-        System.out.println("services page handler...");
+    public String signUp(Model model) {
+        System.out.println("signup page handler...");
+        model.addAttribute("signupDto", new SignupDTO());
         return "sign-up";
     }
-
 }
