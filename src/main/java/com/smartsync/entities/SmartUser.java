@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
@@ -49,7 +50,7 @@ public class SmartUser {
     private boolean isPhoneNumberVarified;
     private boolean isMailVarified;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Providers provider = Providers.SELF;
     private String providerId;
 

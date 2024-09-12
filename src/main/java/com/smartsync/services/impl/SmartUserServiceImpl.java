@@ -22,13 +22,12 @@ public class SmartUserServiceImpl implements SmartUserService {
     @Override
     public SmartUser saveUser(SignupDTO dto) {
         String userId = UUID.randomUUID().toString();
-        SmartUser queryUser=SmartUser.builder()
-                                    .userId(userId)
-                                    .userName(dto.getSignupFirstName()+" "+dto.getSignupLastName())
-                                    .userMail(dto.getSignupMail())
-                                    .password(dto.getSignupPassword())
-                                    .phoneNumber(dto.getSignupMobileNo().toString())
-                                    .build();
+        SmartUser queryUser = new SmartUser();
+        queryUser.setUserName(dto.getSignupFirstName() + " " + dto.getSignupLastName());
+        queryUser.setUserMail(dto.getSignupMail());
+        queryUser.setPassword(dto.getSignupPassword());
+        queryUser.setUserId(userId);
+        queryUser.setPhoneNumber(dto.getSignupMobileNo().toString());
         SmartUser insertedUser = userRepository.save(queryUser);
         return insertedUser;
     }
