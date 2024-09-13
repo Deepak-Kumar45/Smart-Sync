@@ -1,6 +1,7 @@
 package com.smartsync.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -11,6 +12,7 @@ import com.smartsync.utility.AlertMessage;
 import com.smartsync.utility.AlertMessageType;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 public class OperationalController {
@@ -22,9 +24,13 @@ public class OperationalController {
     }
 
     @PostMapping("/registration")
-    public String handlingSignUp(@ModelAttribute("signupDto") SignupDTO signupDTO, HttpSession httpSession) {
+    public String handlingSignUp(@Valid @ModelAttribute("signupDto") SignupDTO signupDTO, HttpSession httpSession,
+            BindingResult bindingResult) {
         System.out.println("handling sign-up form");
         System.out.println(signupDTO);
+        if (bindingResult.hasErrors()) {
+            return "sign-up";
+        }
         SmartUser user = userService.saveUser(signupDTO);
         httpSession.setAttribute("alertObject", new AlertMessage(
                 "Registration successfull!! Check your mail to activate your account", AlertMessageType.green));

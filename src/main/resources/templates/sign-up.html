@@ -16,7 +16,7 @@
             <div class="col-span-10 md:col-span-4 p-4">
                 <h2 class="text-3xl font-extrabold dark:text-white px-4 mx-4 pt-4">Create your account</h2>
                 <form data-th-action="@{/registration}" method="post" data-th-object="${signupDto}"
-                    class="mt-4 ml-4 mr-4 mb- p-4">
+                    class="mt-4 ml-4 mr-4 mb- p-4" novalidate>
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div class="relative z-0 w-full mb-5 group">
                             <input type="text" name="signupFirstName" id="floating_first_name"
@@ -26,6 +26,10 @@
                             <label for="floating_first_name"
                                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First
                                 name</label>
+                            <p data-th-if="${#fields.hasErrors('signupFirstName')}"
+                                class="mt-2 text-sm text-red-600 dark:text-red-500">
+                                <span class="font-medium" data-th-errors="*{signupFirstName}"></span>
+                            </p>
                         </div>
                         <div class="relative z-0 w-full mb-5 group">
                             <input type="text" name="signupLastName" id="floating_last_name"
