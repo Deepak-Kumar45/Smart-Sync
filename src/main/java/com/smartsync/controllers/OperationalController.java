@@ -24,13 +24,13 @@ public class OperationalController {
     }
 
     @PostMapping("/registration")
-    public String handlingSignUp(@Valid @ModelAttribute("signupDto") SignupDTO signupDTO, HttpSession httpSession,
-            BindingResult bindingResult) {
+    public String handlingSignUp(@Valid @ModelAttribute("signupDto") SignupDTO signupDTO, BindingResult result,
+            HttpSession httpSession) {
         System.out.println("handling sign-up form");
-        System.out.println(signupDTO);
-        if (bindingResult.hasErrors()) {
+        if (result.hasErrors()) {
             return "sign-up";
         }
+        System.out.println(signupDTO);
         SmartUser user = userService.saveUser(signupDTO);
         httpSession.setAttribute("alertObject", new AlertMessage(
                 "Registration successfull!! Check your mail to activate your account", AlertMessageType.green));

@@ -27,7 +27,7 @@ public class SmartUserServiceImpl implements SmartUserService {
         queryUser.setUserMail(dto.getSignupMail());
         queryUser.setPassword(dto.getSignupPassword());
         queryUser.setUserId(userId);
-        queryUser.setPhoneNumber(dto.getSignupMobileNo().toString());
+        queryUser.setPhoneNumber(dto.getSignupMobileNo());
         SmartUser insertedUser = userRepository.save(queryUser);
         return insertedUser;
     }

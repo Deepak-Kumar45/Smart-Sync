@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,25 +16,25 @@ import lombok.NoArgsConstructor;
 @Data
 public class SignupDTO {
 
-    @NotBlank(message = "First name is required")
-    @Size(min = 3, message = "First name should be greater than 3 characters")
+    @NotBlank(message = "First name should not be Empty !!")
+    @Size(min = 3,message = "Enter atleast 3 characters !!")
     private String signupFirstName;
 
-    @NotBlank(message = "Last name is required")
-    @Size(min = 3, message = "Last name should be greater than 3 characters")
+    @NotBlank(message = "Last name should not be Empty !!")
+    @Size(min = 3,message = "Enter atleast 3 characters !!")
     private String signupLastName;
 
-    @Email(message = "Email is not valid")
-    @NotBlank(message = "Email is required")
+    @NotBlank(message = "Mail-ID should not be Empty !!")
+    @Email(message = "Please put a valid mail-id !!")
     private String signupMail;
 
-    @NotBlank(message = "Password is required")
-    @Size(min = 8, message = "Password should be greater than 8 characters")
+    @NotBlank(message = "Password should not be empty !!")
+    @Size(min = 8,message = "Password must contains 8 charaters")
     private String signupPassword;
 
-    // @NotNumber(message = "Mobile number is not valid")
-    // @Size(min = 10, max = 10, message = "Mobile number should be 10 digits")
-    @NotNull(message = "Mobile number is required")
-    private Long signupMobileNo;
+    @NotBlank(message = "Mobile number should not be empty !!")
+    @Pattern(regexp = "[0-9]{10}",message = "Only contains value 0-9 !!")
+    @Size(max = 10, min = 10,message = "Mobile number must contains 10 charaters !!")
+    private String signupMobileNo;
 
 }
