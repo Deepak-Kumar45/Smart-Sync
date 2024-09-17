@@ -8,17 +8,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.smartsync.dto.SignupDTO;
 
-
-
 @Controller
 public class DirectionController {
 
-    @GetMapping({"/","/home"})
+    @GetMapping({ "/", "/home" })
     public String home() {
         System.out.println("Home page handler...");
         return "home";
     }
-    
+
     @GetMapping("/about-us")
     public String aboutUs() {
         System.out.println("aboutUs page handler...");
@@ -48,5 +46,11 @@ public class DirectionController {
         System.out.println("signup page handler...");
         model.addAttribute("signupDto", new SignupDTO());
         return "sign-up";
+    }
+
+    @GetMapping("/sign-in")
+    public String signIn() {
+        System.out.println("login page handler...");
+        return "login-page";
     }
 }
