@@ -1,22 +1,28 @@
 package com.smartsync.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.smartsync.dto.SignupDTO;
 import com.smartsync.entities.SmartUser;
 import com.smartsync.repositories.SmartUserRepository;
 import com.smartsync.services.SmartUserService;
+import com.smartsync.utility.AppConstants;
 
 @Service
 public class SmartUserServiceImpl implements SmartUserService {
 
     private SmartUserRepository userRepository;
 
-    public SmartUserServiceImpl(SmartUserRepository userRepository) {
+    private PasswordEncoder encoder;
+
+    public SmartUserServiceImpl(SmartUserRepository userRepository,PasswordEncoder encoder) {
         this.userRepository = userRepository;
+        this.encoder = encoder;
     }
 
     @Override
@@ -25,9 +31,11 @@ public class SmartUserServiceImpl implements SmartUserService {
         SmartUser queryUser = new SmartUser();
         queryUser.setUserName(dto.getSignupFirstName() + " " + dto.getSignupLastName());
         queryUser.setUserMail(dto.getSignupMail());
-        queryUser.setPassword(dto.getSignupPassword());
+        queryUser.setPassword(encoder.encode(dto.getSignupPassword()));
+        queryUser.setRoles(List.of(AppConstants.ROLE_USER));
         queryUser.setUserId(userId);
         queryUser.setPhoneNumber(dto.getSignupMobileNo());
+
         SmartUser insertedUser = userRepository.save(queryUser);
         return insertedUser;
     }
