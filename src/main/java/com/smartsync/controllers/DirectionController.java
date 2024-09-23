@@ -48,7 +48,7 @@ public class DirectionController {
         return "sign-up";
     }
 
-    @GetMapping("/sign-in")
+    @GetMapping("/login")
     public String signIn() {
         System.out.println("login page handler...");
         return "login-page";

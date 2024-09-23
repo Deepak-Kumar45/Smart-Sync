@@ -30,12 +30,35 @@ public class SpringSecurityConfig {
     // create bean for customize filterchain
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+        
+        // disable csrf protection to customize logout page
+        httpSecurity.csrf(csrf->csrf.disable());
+
+        // customize endpoints
         httpSecurity.authorizeHttpRequests(customizer->{
             customizer.requestMatchers("/user/**").authenticated();
             customizer.anyRequest().permitAll();
         });
-        httpSecurity.formLogin(Customizer.withDefaults());
+
+        // customize login page
+        httpSecurity.formLogin(formLogin->{
+            formLogin.loginPage("/login")
+                    .loginProcessingUrl("/authenticate")
+                    .defaultSuccessUrl("/user/dashboard")
+                    .failureUrl("/login?error=true")
+                    .usernameParameter("userMail")
+                    .passwordParameter("password");
+        });
+
+        httpSecurity.logout(logout->{
+            logout.logoutUrl("/self-logout");
+            logout.logoutSuccessUrl("/login?logout=true");
+        });
+
+        // customize Basic authentication
         httpSecurity.httpBasic(Customizer.withDefaults());
+
+        // building the DefaultSecurityFilterChain object
         return httpSecurity.build();
     }
 
