@@ -34,3 +34,6 @@ build/
 
 # Node module
 node_modules/
+
+# application.properties file to save oauth credentials
+application.properties

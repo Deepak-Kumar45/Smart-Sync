@@ -55,6 +55,13 @@ public class SpringSecurityConfig {
             logout.logoutSuccessUrl("/login?logout=true");
         });
 
+
+        // oauth2 customization
+        httpSecurity.oauth2Login(oauth2login->{
+            oauth2login.loginPage("/login");
+            oauth2login.defaultSuccessUrl("/user/dashboard");
+        });
+
         // customize Basic authentication
         httpSecurity.httpBasic(Customizer.withDefaults());
 
