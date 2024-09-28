@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.smartsync.dto.SignupDTO;
-import com.smartsync.entities.SmartUser;
 import com.smartsync.services.SmartUserService;
 import com.smartsync.utility.AlertMessage;
 import com.smartsync.utility.AlertMessageType;
@@ -31,7 +30,7 @@ public class OperationalController {
             return "sign-up";
         }
         System.out.println(signupDTO);
-        SmartUser user = userService.saveUser(signupDTO);
+        userService.saveUser(signupDTO);
         httpSession.setAttribute("alertObject", new AlertMessage(
                 "Registration successfull!! Check your mail to activate your account", AlertMessageType.green));
         return "redirect:/sign-up";

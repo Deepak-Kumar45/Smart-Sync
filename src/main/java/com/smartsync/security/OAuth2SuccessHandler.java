@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 import com.smartsync.entities.Providers;
 import com.smartsync.entities.SmartUser;
 import com.smartsync.repositories.SmartUserRepository;
-import com.smartsync.services.SmartUserService;
 import com.smartsync.utility.AppConstants;
 
 import jakarta.servlet.ServletException;
@@ -52,7 +51,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
         if (provider.equalsIgnoreCase("google")) {
             smartUser.setProvider(Providers.GOOGLE);
             smartUser.setProviderId(authUser.getAttribute("sub").toString());
-            smartUser.setUserName(authUser.getAttribute("name").toString());
+            smartUser.setSmartUserName(authUser.getAttribute("name").toString());
             smartUser.setUserMail(authUser.getAttribute("email").toString());
             smartUser.setProfilePic(authUser.getAttribute("picture").toString());
             smartUser.setMailVarified(authUser.getAttribute("email_verified"));
@@ -62,7 +61,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
             smartUser.setUserMail(email);
             smartUser.setProviderId(authUser.getAttribute("id").toString());
             smartUser.setProfilePic(authUser.getAttribute("avatar_url"));
-            smartUser.setUserName(authUser.getAttribute("name"));
+            smartUser.setSmartUserName(authUser.getAttribute("name"));
             smartUser.setDescription(authUser.getAttribute("bio"));
             smartUser.setEnabled(true);
             smartUser.setProvider(Providers.GITHUB);

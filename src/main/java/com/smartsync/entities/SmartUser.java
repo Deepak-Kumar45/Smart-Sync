@@ -40,8 +40,10 @@ public class SmartUser implements UserDetails{
     // necessary info
     @Id
     private String userId;
+
     @Column(nullable = false)
-    private String userName;
+    private String smartUserName;
+
     @Column(nullable = false)
     private String userMail;
     

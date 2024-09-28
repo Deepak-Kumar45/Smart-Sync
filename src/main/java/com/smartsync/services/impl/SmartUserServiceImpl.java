@@ -29,7 +29,7 @@ public class SmartUserServiceImpl implements SmartUserService {
     public SmartUser saveUser(SignupDTO dto) {
         String userId = UUID.randomUUID().toString();
         SmartUser queryUser = new SmartUser();
-        queryUser.setUserName(dto.getSignupFirstName() + " " + dto.getSignupLastName());
+        queryUser.setSmartUserName(dto.getSignupFirstName() + " " + dto.getSignupLastName());
         queryUser.setUserMail(dto.getSignupMail());
         queryUser.setPassword(encoder.encode(dto.getSignupPassword()));
         queryUser.setRoles(List.of(AppConstants.ROLE_USER));
