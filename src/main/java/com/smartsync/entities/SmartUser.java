@@ -44,7 +44,7 @@ public class SmartUser implements UserDetails{
     private String userName;
     @Column(nullable = false)
     private String userMail;
-    @Column(nullable = false)
+    
     private String password;
 
     private String phoneNumber;

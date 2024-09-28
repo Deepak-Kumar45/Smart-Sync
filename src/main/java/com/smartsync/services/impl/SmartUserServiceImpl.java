@@ -64,4 +64,10 @@ public class SmartUserServiceImpl implements SmartUserService {
         throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
     }
 
+    @Override
+    public SmartUser getUserByMail(String email) {
+        SmartUser user = userRepository.findByUserMail(email).orElse(null);
+        return user;
+    }
+
 }

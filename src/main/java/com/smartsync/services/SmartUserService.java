@@ -16,4 +16,6 @@ public interface SmartUserService {
     Optional<SmartUser> updateUser(SmartUser user);
 
     void deleteUser(String userId);
+
+    SmartUser getUserByMail(String email);
 }

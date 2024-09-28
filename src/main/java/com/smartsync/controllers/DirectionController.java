@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.smartsync.dto.SignupDTO;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class DirectionController {
@@ -57,4 +59,5 @@ public class DirectionController {
         log.info("SmartSync login page");
         return "login-page";
     }
+    
 }
