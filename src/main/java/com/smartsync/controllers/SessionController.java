@@ -24,7 +24,7 @@ public class SessionController {
             return;
         }
         String email=LoggedInUserUtil.getLoggedInUserMail(authentication);
-            SmartUser user = userService.getUserByMail(email);
+        SmartUser user = userService.getUserByMail(email);
         if(user==null){
             model.addAttribute("authorizedUser", null);
         }else{

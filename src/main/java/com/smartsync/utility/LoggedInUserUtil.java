@@ -9,10 +9,12 @@ import org.springframework.stereotype.Component;
 public class LoggedInUserUtil {
 
     public static String getLoggedInUserMail(Authentication authentication) {
-        OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) authentication;
+        String email = null;
+        if(authentication instanceof OAuth2AuthenticationToken){
+            OAuth2AuthenticationToken token = (OAuth2AuthenticationToken) authentication;
         String loginBy = token.getAuthorizedClientRegistrationId();
         DefaultOAuth2User oAuth2User = (DefaultOAuth2User) token.getPrincipal();
-        String email = null;
+        
         if (loginBy.equalsIgnoreCase("google")) {
             email = oAuth2User.getAttribute("email").toString();
         } else if (loginBy.equalsIgnoreCase("github")) {
@@ -21,6 +23,9 @@ public class LoggedInUserUtil {
                     : oAuth2User.getAttribute("email");
         } else {
             email = oAuth2User.getName();
+        }
+        }else{
+            email = authentication.getName();
         }
         return email;
     }

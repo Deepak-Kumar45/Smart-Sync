@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-th-replace="~{user/user-fragment::userTemplate(~{::#body},~{::title},~{})}">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile</title>
 </head>
 <body>
+    <div id="body">
     <h1>This is user profile page</h1>
-    <a data-th-href="@{/}">Home</a>
-    <a data-th-href="@{/self-logout}">Home</a>
-    <p data-th-text="${authorizedUser.smartUserName}"></p>
-    <p data-th-text="${authorizedUser.userMail}"></p>
-    <p data-th-text="${authorizedUser.userId}"></p>
-    <p data-th-text="${authorizedUser.phoneNumber}"></p>
-    <p data-th-text="${authorizedUser.profilePic}"></p>
-    
-    <img data-th-src="${authorizedUser.profilePic}" alt="no pic found">
+        <a data-th-href="@{/}">Home</a>
+        <a data-th-href="@{/self-logout}">Home</a>
+        <p data-th-text="${authorizedUser.smartUserName}"></p>
+        <p data-th-text="${authorizedUser.userMail}"></p>
+        <p data-th-text="${authorizedUser.userId}"></p>
+        <p data-th-text="${authorizedUser.phoneNumber}"></p>
+        <p data-th-text="${authorizedUser.profilePic}"></p>
+        
+        <img data-th-src="${authorizedUser.profilePic}" alt="no pic found">
+    </div>
 </body>
 </html>

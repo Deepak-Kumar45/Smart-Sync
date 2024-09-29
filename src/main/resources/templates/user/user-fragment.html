@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" data-th-fragment="baseTemplate(body,title,scripts)" class="light">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-th-fragment="userTemplate(body,title,scripts)" class="light">
 
 <head>
     <meta charset="UTF-8">
@@ -18,16 +18,6 @@
 </head>
 
 <body>
-    <!-- navbar -->
-    <div data-th-if="${authorizedUser}">
-        <div data-th-replace="~{navbar::smartsync-navbar(${authorizedUser})}"></div>
-    </div>
-    <div data-th-unless="${authorizedUser}">
-        <div data-th-replace="~{navbar::smartsync-navbar('unauthUser')}"></div>
-    </div>
-    
-    
-
     <!-- main content div replaced by child template -->
     <div class="px-4 py-2">
         <div id="main-div" data-th-replace="${body}"></div>
