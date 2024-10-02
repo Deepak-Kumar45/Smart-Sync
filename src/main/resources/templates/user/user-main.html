@@ -1,0 +1,32 @@
+<div data-th-fragment="user-main-fragment" class="py-4 sm:ml-64">
+    <div class="mt-14">
+        <div id="default-styled-tab-content">
+            <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-dashboard" role="tabpanel"
+                aria-labelledby="dashboard-tab">
+                <div data-th-replace="~{user/dashboard-content::dashboard-content-fragment}"></div>
+            </div>
+            <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-profile" role="tabpanel"
+                aria-labelledby="profile-tab">
+                <div data-th-replace="~{user/user-contacts::user-contacts-fragment}"></div>
+            </div>
+            <div class="hidden rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-add-contact" role="tabpanel"
+                aria-labelledby="settings-tab">
+                <div data-th-replace="~{user/add-contacts::add-contact}"></div>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-favourites" role="tabpanel"
+                aria-labelledby="contacts-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
+                        class="font-medium text-gray-800 dark:text-white">Favourite contacts</strong>. Clicking
+                    another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
+                    control the content visibility and styling.</p>
+            </div>
+            <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="styled-histroy" role="tabpanel"
+                aria-labelledby="contacts-tab">
+                <p class="text-sm text-gray-500 dark:text-gray-400">This is some placeholder content the <strong
+                        class="font-medium text-gray-800 dark:text-white">History of contacts</strong>. Clicking
+                    another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to
+                    control the content visibility and styling.</p>
+            </div>
+        </div>
+    </div>
+</div>
