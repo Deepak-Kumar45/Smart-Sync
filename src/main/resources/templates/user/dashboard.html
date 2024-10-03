@@ -1,26 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" data-th-replace="~{user/user-fragment::userTemplate(~{::#body},~{::title},~{})}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-th-fragment="userTemplate(body)" class="light">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- custom title changed by child template -->
   <title>Dashboard</title>
+  <link rel="shortcut icon" data-th-href="@{/images/Smart.png}" type="image/x-icon">
+  <link rel="stylesheet" data-th-href="@{/css/output.css}">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
 
-    <div id="body">
-        <div id="body">
-            <!-- user-navbar -->
-            <nav data-th-replace="~{user/user-navbar::user-navbar-fragment}"></nav>
-        
-            <!-- user-sidebar -->
-            <aside data-th-replace="~{user/user-sidebar::user-sidebar-fragment}"></aside>
-        
-            <!-- user-main section -->
-            <div data-th-replace="~{user/user-main::user-main-fragment}"></div>
-        
-        
-          </div>
-    </div>
+  <div id="body">
+    <!-- user-navbar -->
+    <nav data-th-replace="~{user/user-navbar::user-navbar-fragment}"></nav>
+
+    <!-- user-sidebar -->
+    <aside data-th-replace="~{user/user-sidebar::user-sidebar-fragment}"></aside>
+
+    <!-- user-main section -->
+    <div data-th-fragment="user-main-fragment" class="py-4 sm:ml-64">
+      <div class="mt-14">
+          <div data-th-replace="${body}"></div>
+      </div>
+  </div>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 </body>
 
 </html>

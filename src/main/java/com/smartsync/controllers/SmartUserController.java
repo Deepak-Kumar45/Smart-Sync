@@ -12,7 +12,7 @@ public class SmartUserController {
 
     @GetMapping("/dashboard")
     public String userDashboard() {
-        return "user/dashboard";
+        return "user/dashboard-content.html";
     }
     
     @GetMapping("/profile")
