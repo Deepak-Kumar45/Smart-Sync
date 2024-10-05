@@ -28,16 +28,27 @@ import lombok.Setter;
 @Entity
 @Table(name = "tbl_smart_contact")
 public class Contact {
+    
     @Id
     private String concactId;
+
     @Column(nullable = false)
     private String contactName;
+    
     @Column(nullable = false)
     private String contactMail;
+    
     @Column(nullable = false)
     private String contactPhoneNumber;
     
     private String address;
+
+    private String contactProfilePic;
+
+    private String linkedIn;
+    
+    private String twitter;
+    
     private boolean favourite;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "contact",orphanRemoval = true)
@@ -46,6 +57,4 @@ public class Contact {
     // info of user
     @ManyToOne
     private SmartUser smartUser;
-
-
 }
