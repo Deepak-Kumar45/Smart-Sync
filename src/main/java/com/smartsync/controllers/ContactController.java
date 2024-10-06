@@ -1,5 +1,7 @@
 package com.smartsync.controllers;
 
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.smartsync.dto.ContactDTO;
 import com.smartsync.entities.Contact;
-import com.smartsync.repositories.ContactRepository;
 import com.smartsync.services.ContactService;
+import com.smartsync.services.UploadImageService;
 import com.smartsync.utility.AlertMessage;
 import com.smartsync.utility.AlertMessageType;
 import com.smartsync.utility.LoggedInUserUtil;
@@ -32,8 +34,11 @@ public class ContactController {
 
     private ContactService contactService;
 
-    public ContactController(ContactService contactService){
+    private UploadImageService imageService;
+
+    public ContactController(ContactService contactService,UploadImageService imageService){
         this.contactService = contactService;    
+        this.imageService = imageService;
     }
 
     @GetMapping("/contact-list")
@@ -65,6 +70,13 @@ public class ContactController {
         }
         String userMail=LoggedInUserUtil.getLoggedInUserMail(authentication);
         contactDTO.setUserEmail(userMail);
+
+        String publicId= UUID.randomUUID().toString();
+        String urlImage=imageService.uploadImage(contactDTO.getContactImage(),publicId);
+        
+        contactDTO.setContactImageUrl(urlImage);
+        contactDTO.setPublicId(publicId);
+
 
         // save the contact
         Contact saveContact = contactService.saveContact(contactDTO);

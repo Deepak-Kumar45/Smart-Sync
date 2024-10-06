@@ -45,8 +45,12 @@ public class ContactDTO {
 
     private Boolean isFavourite;
 
-    private MultipartFile image;
-
     private String userEmail;
+
+    private String contactImageUrl;
+
+    private String publicId;
+
+    private MultipartFile contactImage;
 
 }

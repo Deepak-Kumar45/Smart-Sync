@@ -39,6 +39,8 @@ public class ContactServiceImpl implements ContactService {
         contact.setLinkedIn(contactDTO.getLinkedIn());
         contact.setSmartUser(user);
         contact.setTwitter(contactDTO.getTwitter());
+        contact.setImagePublicId(contactDTO.getPublicId());
+        contact.setContactProfilePic(contactDTO.getContactImageUrl());
 
         Contact savedContact = contactRepository.save(contact);
         return savedContact;

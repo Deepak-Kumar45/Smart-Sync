@@ -45,6 +45,8 @@ public class Contact {
 
     private String contactProfilePic;
 
+    private String imagePublicId;
+
     private String linkedIn;
     
     private String twitter;
