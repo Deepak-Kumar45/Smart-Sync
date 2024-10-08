@@ -1,5 +1,6 @@
 package com.smartsync.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ public class ContactServiceImpl implements ContactService {
 
     private SmartUserRepository userRepository;
 
-    public ContactServiceImpl(ContactRepository contactRepository,SmartUserRepository userRepository){
+    public ContactServiceImpl(ContactRepository contactRepository, SmartUserRepository userRepository) {
         this.contactRepository = contactRepository;
         this.userRepository = userRepository;
     }
@@ -27,7 +28,7 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public Contact saveContact(ContactDTO contactDTO) {
 
-        SmartUser user=userRepository.findByUserMail(contactDTO.getUserEmail()).orElse(null);
+        SmartUser user = userRepository.findByUserMail(contactDTO.getUserEmail()).orElse(null);
 
         Contact contact = new Contact();
         contact.setAddress(contactDTO.getContactAddress());
@@ -50,5 +51,14 @@ public class ContactServiceImpl implements ContactService {
     public Optional<Contact> getContactById(String contactId) {
         // TODO Auto-generated method stub
         return Optional.empty();
+    }
+
+    @Override
+    public List<Contact> getContactsByUser(String email) {
+        SmartUser user = userRepository.findByUserMail(email).orElse(null);
+
+        List<Contact> contacts = contactRepository.findBySmartUser(user);
+
+        return contacts;
     }
 }

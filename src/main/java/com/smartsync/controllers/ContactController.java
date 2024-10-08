@@ -1,5 +1,6 @@
 package com.smartsync.controllers;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -24,67 +25,67 @@ import com.smartsync.utility.LoggedInUserUtil;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
-
-
 @Controller
 @RequestMapping("user/contacts")
 public class ContactController {
 
-    private Logger logger=LoggerFactory.getLogger(ContactController.class);
+    private Logger logger = LoggerFactory.getLogger(ContactController.class);
 
     private ContactService contactService;
 
     private UploadImageService imageService;
 
-    public ContactController(ContactService contactService,UploadImageService imageService){
-        this.contactService = contactService;    
+    public ContactController(ContactService contactService, UploadImageService imageService) {
+        this.contactService = contactService;
         this.imageService = imageService;
     }
 
     @GetMapping("/contact-list")
-    public String showContactsList() {
+    public String showContactsList(Model model, Authentication authentication) {
         logger.info("showing list of contacts..");
+        String email = LoggedInUserUtil.getLoggedInUserMail(authentication);
+        List<Contact> contactList = contactService.getContactsByUser(email);
+        model.addAttribute("contactList", contactList);
         return "user/user-contacts";
     }
-    
+
     @GetMapping("/favourites")
     public String favourites() {
-        logger.info("showing list of favourite contacts..");    
+        logger.info("showing list of favourite contacts..");
         return "user/user-favourites";
     }
-    
+
     @GetMapping("/add-contact")
     public String addContacts(Model model) {
         logger.info("Displaying form to add contacts");
-        ContactDTO dto=new ContactDTO();
+        ContactDTO dto = new ContactDTO();
         model.addAttribute("contactDto", dto);
         return "user/add-contacts";
     }
 
     @PostMapping("/adding-contact")
-    public String addingContact(@Valid @ModelAttribute("contactDto") ContactDTO contactDTO, BindingResult bindingResult,Authentication authentication,HttpSession httpSession) {
+    public String addingContact(@Valid @ModelAttribute("contactDto") ContactDTO contactDTO, BindingResult bindingResult,
+            Authentication authentication, HttpSession httpSession) {
         logger.info("Adding contact in in process");
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "user/add-contacts";
         }
-        String userMail=LoggedInUserUtil.getLoggedInUserMail(authentication);
+        String userMail = LoggedInUserUtil.getLoggedInUserMail(authentication);
         contactDTO.setUserEmail(userMail);
 
-        String publicId= UUID.randomUUID().toString();
-        String urlImage=imageService.uploadImage(contactDTO.getContactImage(),publicId);
-        
+        String publicId = UUID.randomUUID().toString();
+        String urlImage = imageService.uploadImage(contactDTO.getContactImage(), publicId);
+
         contactDTO.setContactImageUrl(urlImage);
         contactDTO.setPublicId(publicId);
-
 
         // save the contact
         Contact saveContact = contactService.saveContact(contactDTO);
 
-        httpSession.setAttribute("alertObject",new AlertMessage(saveContact.getContactName()+" has been saved successfully", AlertMessageType.green));
+        httpSession.setAttribute("alertObject", new AlertMessage(
+                saveContact.getContactName() + " has been saved successfully", AlertMessageType.green));
         return "redirect:/user/contacts/add-contact";
     }
-    
-    
-    
+
 }
