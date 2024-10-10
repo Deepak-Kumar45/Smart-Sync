@@ -21,6 +21,7 @@ import com.smartsync.services.UploadImageService;
 import com.smartsync.utility.AlertMessage;
 import com.smartsync.utility.AlertMessageType;
 import com.smartsync.utility.LoggedInUserUtil;
+import com.smartsync.utility.SmartSyncUtil;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -45,7 +46,12 @@ public class ContactController {
         logger.info("showing list of contacts..");
         String email = LoggedInUserUtil.getLoggedInUserMail(authentication);
         List<Contact> contactList = contactService.getContactsByUser(email);
-        model.addAttribute("contactList", contactList);
+
+        // adding dummy data
+        // if (contactList.isEmpty()) {
+        contactList.addAll(SmartSyncUtil.getDummyContacts());
+        // }
+        model.addAttribute("contacts", contactList);
         return "user/user-contacts";
     }
 

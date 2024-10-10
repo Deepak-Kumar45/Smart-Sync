@@ -29,12 +29,19 @@
     <!-- user-main section -->
     <div data-th-fragment="user-main-fragment" class="py-4 sm:ml-64">
       <div class="mt-14">
-          <div data-th-replace="${body}"></div>
+        <div data-th-replace="${body}"></div>
       </div>
-  </div>
+    </div>
 
   </div>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+  <script>
+    console.log("This is user contacts page");
+    function setContactInModal(contact) {
+      document.getElementById("first-name").value = contact;
+    }
+  </script>
+
 </body>
 
 </html>
