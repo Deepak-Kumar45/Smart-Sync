@@ -37,8 +37,13 @@
   <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
   <script>
     console.log("This is user contacts page");
-    function setContactInModal(contact) {
-      document.getElementById("first-name").value = contact;
+    function setContactInModal(name,mail,phnno,id) {
+      // 
+      document.getElementById("first-name").value = name
+      document.getElementById("phone-number").value = phnno
+      document.getElementById("email").value = mail
+      // document.getElementById("department").value = address
+      document.getElementById("last-name").value = id
     }
   </script>
 

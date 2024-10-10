@@ -4,6 +4,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.smartsync.dto.ContactDTO;
@@ -54,10 +59,13 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> getContactsByUser(String email) {
+    public Page<Contact> getContactsByUser(String email, Integer pageNumber, Integer pageSize, String sortBy,
+            String dir) {
         SmartUser user = userRepository.findByUserMail(email).orElse(null);
-
-        List<Contact> contacts = contactRepository.findBySmartUser(user);
+        // Direction direction=dir.equals("desc").
+        Sort sort = dir.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+        Page<Contact> contacts = contactRepository.findBySmartUser(user, pageable);
 
         return contacts;
     }

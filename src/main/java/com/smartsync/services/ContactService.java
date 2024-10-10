@@ -1,7 +1,8 @@
 package com.smartsync.services;
 
-import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
 
 import com.smartsync.dto.ContactDTO;
 import com.smartsync.entities.Contact;
@@ -12,6 +13,6 @@ public interface ContactService {
     
     public Optional<Contact> getContactById(String contactId);
 
-    public List<Contact> getContactsByUser(String email);
+    public Page<Contact> getContactsByUser(String email,Integer pageNumber, Integer pageSize,String sortBy,String dir);
 
 }
