@@ -1,6 +1,5 @@
 package com.smartsync.services.impl;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -8,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.smartsync.dto.ContactDTO;
@@ -66,6 +64,45 @@ public class ContactServiceImpl implements ContactService {
         Sort sort = dir.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
         Page<Contact> contacts = contactRepository.findBySmartUser(user, pageable);
+
+        return contacts;
+    }
+
+    @Override
+    public Page<Contact> findContactsByName(String email, String name, Integer pageNumber, Integer pageSize,
+            String sortBy, String dir) {
+        SmartUser smartUser = userRepository.findByUserMail(email).orElse(null);
+        Sort sort = dir.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+
+        Page<Contact> contacts = contactRepository.findBySmartUserAndContactNameContaining(smartUser, name, pageable);
+
+        return contacts;
+    }
+
+    @Override
+    public Page<Contact> findContactsByMail(String email, String mail, Integer pageNumber, Integer pageSize,
+            String sortBy, String dir) {
+        SmartUser smartUser = userRepository.findByUserMail(email).orElse(null);
+        Sort sort = dir.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+        Page<Contact> contacts = contactRepository.findBySmartUserAndContactMailContaining(smartUser, mail, pageable);
+        contacts.forEach(c->System.out.println(c.getContactName()));
+
+        return contacts;
+    }
+
+    @Override
+    public Page<Contact> findContactsByPhone(String email, String phone, Integer pageNumber, Integer pageSize,
+            String sortBy, String dir) {
+        SmartUser smartUser = userRepository.findByUserMail(email).orElse(null);
+        Sort sort = dir.equals("desc") ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+
+        Page<Contact> contacts = contactRepository.findBySmartUserAndContactPhoneNumberContaining(smartUser, phone, pageable);
 
         return contacts;
     }

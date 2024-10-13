@@ -15,4 +15,10 @@ public interface ContactService {
 
     public Page<Contact> getContactsByUser(String email,Integer pageNumber, Integer pageSize,String sortBy,String dir);
 
+    public Page<Contact> findContactsByName(String email,String name,Integer pageNumber, Integer pageSize,String sortBy,String dir);
+
+    public Page<Contact> findContactsByMail(String email,String mail,Integer pageNumber, Integer pageSize,String sortBy,String dir);
+    
+    public Page<Contact> findContactsByPhone(String email,String phone,Integer pageNumber, Integer pageSize,String sortBy,String dir);
+
 }

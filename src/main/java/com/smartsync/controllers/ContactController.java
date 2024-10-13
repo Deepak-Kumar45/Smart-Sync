@@ -1,6 +1,5 @@
 package com.smartsync.controllers;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smartsync.dto.ContactDTO;
+import com.smartsync.dto.SearchForm;
 import com.smartsync.entities.Contact;
 import com.smartsync.services.ContactService;
 import com.smartsync.services.UploadImageService;
@@ -24,7 +24,6 @@ import com.smartsync.utility.AlertMessage;
 import com.smartsync.utility.AlertMessageType;
 import com.smartsync.utility.AppConstants;
 import com.smartsync.utility.LoggedInUserUtil;
-import com.smartsync.utility.SmartSyncUtil;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -45,17 +44,20 @@ public class ContactController {
     }
 
     @GetMapping("/contact-list")
-    public String showContactsList(@RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) Integer pageNumber,
+    public String showContactsList(
+            @RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) Integer pageNumber,
             @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) Integer pageSize,
             @RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY) String sortBy,
             @RequestParam(value = "dir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION) String dir,
-            
             Model model, Authentication authentication) {
         logger.info("showing list of contacts..");
         String email = LoggedInUserUtil.getLoggedInUserMail(authentication);
         Page<Contact> contactList = contactService.getContactsByUser(email, pageNumber, pageSize, sortBy, dir);
-                logger.info("Total pagination pages:{}",contactList.getTotalPages());
+        logger.info("Total pagination pages:{}", contactList.getTotalPages());
         model.addAttribute("contacts", contactList);
+        model.addAttribute("searchForm", new SearchForm());
+        model.addAttribute("pageSize", AppConstants.DEFAULT_PAGE_SIZE);
+
         return "user/user-contacts";
     }
 
@@ -96,6 +98,33 @@ public class ContactController {
         httpSession.setAttribute("alertObject", new AlertMessage(
                 saveContact.getContactName() + " has been saved successfully", AlertMessageType.green));
         return "redirect:/user/contacts/add-contact";
+    }
+
+    @GetMapping("/search")
+    public String searchContact(
+            @ModelAttribute("searchForm") SearchForm searchForm,
+            @RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) Integer pageNumber,
+            @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) Integer pageSize,
+            @RequestParam(value = "sortBy", defaultValue = AppConstants.DEFAULT_SORT_BY) String sortBy,
+            @RequestParam(value = "dir", defaultValue = AppConstants.DEFAULT_SORT_DIRECTION) String dir,
+            Authentication authentication, Model model) {
+        String email = LoggedInUserUtil.getLoggedInUserMail(authentication);
+        Page<Contact> contacts = null;
+        if (searchForm.getSearchBy().equals("byName")) {
+            contacts = contactService.findContactsByName(email, searchForm.getKeyword(), pageNumber, pageSize, sortBy,
+                    dir);
+        } else if (searchForm.getSearchBy().equals("byEmail")) {
+            contacts = contactService.findContactsByMail(email, searchForm.getKeyword(), pageNumber, pageSize, sortBy,
+                    dir);
+        } else if (searchForm.getSearchBy().equals("byPhone")) {
+            contacts = contactService.findContactsByPhone(email, searchForm.getKeyword(), pageNumber, pageSize, sortBy,
+            dir);
+        }
+        logger.info("{}, {}, {}", email, searchForm.getSearchBy(), searchForm.getKeyword());
+        model.addAttribute("contacts", contacts);
+        model.addAttribute("searchForm", searchForm);
+        model.addAttribute("pageSize", AppConstants.DEFAULT_PAGE_SIZE);
+        return "user/search-page";
     }
 
 }
