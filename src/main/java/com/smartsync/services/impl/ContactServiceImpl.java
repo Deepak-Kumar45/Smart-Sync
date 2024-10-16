@@ -52,8 +52,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Optional<Contact> getContactById(String contactId) {
-        // TODO Auto-generated method stub
-        return Optional.empty();
+        return contactRepository.findById(contactId);
     }
 
     @Override

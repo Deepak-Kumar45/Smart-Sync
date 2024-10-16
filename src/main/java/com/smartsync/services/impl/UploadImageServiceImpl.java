@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Transformation;
-import com.cloudinary.Url;
 import com.smartsync.services.UploadImageService;
 import com.smartsync.utility.AppConstants;
 
