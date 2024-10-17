@@ -13,6 +13,8 @@ public interface ContactService {
     
     public Optional<Contact> getContactById(String contactId);
 
+    public void deleteConatctById(String id);
+
     public Page<Contact> getContactsByUser(String email,Integer pageNumber, Integer pageSize,String sortBy,String dir);
 
     public Page<Contact> findContactsByName(String email,String name,Integer pageNumber, Integer pageSize,String sortBy,String dir);

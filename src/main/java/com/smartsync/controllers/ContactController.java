@@ -127,4 +127,21 @@ public class ContactController {
         return "user/search-page";
     }
 
+    @GetMapping("/delete-contact")
+    public String deleteContact(@RequestParam("id") String id,HttpSession httpSession){
+        Contact contact = contactService.getContactById(id).get();
+        String deletedConatctName=contact.getContactName();
+        contactService.deleteConatctById(id);
+        httpSession.setAttribute("alertObject", new AlertMessage(
+            deletedConatctName + " details has been deleted successfully", AlertMessageType.green));
+        return "redirect:/user/contacts/contact-list";
+    }
+
+    @GetMapping("show-edit-form")
+    public String showEditForm(@RequestParam("id") String param) {
+
+        return "show-edit-form";
+    }
+    
+
 }

@@ -88,7 +88,7 @@ public class ContactServiceImpl implements ContactService {
 
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
         Page<Contact> contacts = contactRepository.findBySmartUserAndContactMailContaining(smartUser, mail, pageable);
-        contacts.forEach(c->System.out.println(c.getContactName()));
+        contacts.forEach(c -> System.out.println(c.getContactName()));
 
         return contacts;
     }
@@ -101,8 +101,14 @@ public class ContactServiceImpl implements ContactService {
 
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 
-        Page<Contact> contacts = contactRepository.findBySmartUserAndContactPhoneNumberContaining(smartUser, phone, pageable);
+        Page<Contact> contacts = contactRepository.findBySmartUserAndContactPhoneNumberContaining(smartUser, phone,
+                pageable);
 
         return contacts;
+    }
+
+    @Override
+    public void deleteConatctById(String id) {
+        contactRepository.deleteById(id);
     }
 }

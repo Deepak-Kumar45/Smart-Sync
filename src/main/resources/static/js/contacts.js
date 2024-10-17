@@ -12,5 +12,10 @@ async function setContactInModal(id) {
     document.querySelector("#contact-mobile").innerHTML = contact["contactDtoMobile"];
     document.querySelector("#facebook-link").setAttribute("href", contact["linkedIn"]);
     document.querySelector("#twitter-link").setAttribute("href", contact["http://www.google.com"]);
+}
 
+function deleteContact(contactId) {
+
+    document.querySelector("#confirmDelete").setAttribute("href","delete-contact?id="+contactId);
+    
 }
