@@ -61,14 +61,17 @@ public class SmartUser implements UserDetails{
     private boolean isMailVarified;
 
     @Enumerated(EnumType.STRING)
+    @Builder.Default
     private Providers provider = Providers.SELF;
     private String providerId;
 
     // concacts of user
     @OneToMany(mappedBy = "smartUser", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @Builder.Default
     private List<Contact> contacts = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.EAGER)
+    @Builder.Default
     private List<String> roles=new ArrayList<>();
 
     @Override

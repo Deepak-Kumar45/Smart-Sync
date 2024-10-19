@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -137,11 +138,33 @@ public class ContactController {
         return "redirect:/user/contacts/contact-list";
     }
 
-    @GetMapping("show-edit-form")
-    public String showEditForm(@RequestParam("id") String param) {
-
-        return "show-edit-form";
+    @GetMapping("/show-edit-form/{id}")
+    public String showEditForm(@PathVariable("id") String contactId, Model model ) {
+        Contact dbCOntact = contactService.getContactById(contactId).get();
+        ContactDTO contactDTO=new ContactDTO();
+        contactDTO.setContactAddress(dbCOntact.getAddress());
+        contactDTO.setContactDtoEmail(dbCOntact.getContactMail());
+        contactDTO.setContactDtoMobile(dbCOntact.getContactPhoneNumber());
+        contactDTO.setContactDtoName(dbCOntact.getContactName());
+        contactDTO.setContactImageUrl(dbCOntact.getContactProfilePic());
+        contactDTO.setIsFavourite(dbCOntact.isFavourite());
+        contactDTO.setLinkedIn(dbCOntact.getLinkedIn());
+        contactDTO.setTwitter(dbCOntact.getTwitter());
+        model.addAttribute("contactDto", contactDTO);
+        model.addAttribute("contactId", contactId);
+        return "user/show-edit-form";
     }
-    
+
+    @PostMapping("/update-contact/{id}")
+    public String updateContact(@PathVariable("id") String contactId, @Valid @ModelAttribute("contactDto") ContactDTO contactDTO,BindingResult bindingResult,Model model,HttpSession httpSession) {
+        logger.info("Your contact updation id: {}",contactId);
+        if (bindingResult.hasErrors()) {
+            return "user/show-edit-form";
+        }
+        ContactDTO updatedContactDTO = contactService.updateContactById(contactId, contactDTO);
+        model.addAttribute("contactDto", updatedContactDTO);
+        httpSession.setAttribute("alertObject", new AlertMessage("Contact is updated successfully", AlertMessageType.blue));
+        return "redirect:/user/contacts/show-edit-form/"+contactId;
+    }
 
 }

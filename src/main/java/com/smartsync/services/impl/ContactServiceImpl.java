@@ -111,4 +111,33 @@ public class ContactServiceImpl implements ContactService {
     public void deleteConatctById(String id) {
         contactRepository.deleteById(id);
     }
+
+    @Override
+    public ContactDTO updateContactById(String contactId, ContactDTO contactDTO) {
+        Contact oldContact = getContactById(contactId).get();
+        oldContact.setAddress(contactDTO.getContactAddress());
+        oldContact.setContactMail(contactDTO.getContactDtoEmail());
+        oldContact.setContactName(contactDTO.getContactDtoName());
+        oldContact.setContactPhoneNumber(contactDTO.getContactDtoMobile());
+        // oldContact.setContactProfilePic(contactDTO.getContactAddress());
+        // oldContact.setDescription(contactDTO.getContactById);
+        // oldContact.getImagePublicId(contactDTO.getContactAddress());
+        oldContact.setFavourite(contactDTO.getIsFavourite());
+        oldContact.setLinkedIn(contactDTO.getLinkedIn());
+        oldContact.setTwitter(contactDTO.getTwitter());
+        
+        Contact updatedContact = contactRepository.save(oldContact);
+
+        ContactDTO newContactDTO=new ContactDTO();
+        newContactDTO.setContactDtoEmail(updatedContact.getContactMail());
+        newContactDTO.setContactAddress(updatedContact.getAddress());
+        newContactDTO.setContactDtoMobile(updatedContact.getContactPhoneNumber());
+        newContactDTO.setContactDtoName(updatedContact.getContactName());
+        newContactDTO.setContactImageUrl(updatedContact.getContactProfilePic());
+        newContactDTO.setIsFavourite(updatedContact.isFavourite());
+        newContactDTO.setLinkedIn(updatedContact.getLinkedIn());
+        newContactDTO.setTwitter(updatedContact.getTwitter());
+        
+        return newContactDTO;
+    }
 }

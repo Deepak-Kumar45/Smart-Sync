@@ -56,6 +56,7 @@ public class Contact {
     private boolean favourite;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "contact",orphanRemoval = true)
+    @Builder.Default
     private List<SocialLinks> socialLinks = new ArrayList<>();
 
     // info of user

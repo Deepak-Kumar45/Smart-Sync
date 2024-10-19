@@ -15,7 +15,5 @@ async function setContactInModal(id) {
 }
 
 function deleteContact(contactId) {
-
     document.querySelector("#confirmDelete").setAttribute("href","delete-contact?id="+contactId);
-    
 }

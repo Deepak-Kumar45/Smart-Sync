@@ -1,7 +1,6 @@
 package com.smartsync.controllers;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +33,7 @@ public class APIController {
         dto.setLinkedIn(contact.getLinkedIn());
         dto.setTwitter(contact.getTwitter());
         dto.setIsFavourite(contact.isFavourite());
+        Contact.builder().smartUser(null);
         return ResponseEntity.status(HttpStatus.FOUND).body(dto);
     }  
 

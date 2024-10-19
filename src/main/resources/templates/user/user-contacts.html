@@ -124,8 +124,7 @@
                             </td>
                             <td class="px-6 py-2">
                                 <!-- Modal toggle -->
-                                <a data-th-href="@{/show-edit-form?id=*{contactId}}" type="button"
-                                    data-modal-target="showContactModal" data-modal-show="showContactModal"
+                                <a data-th-href="@{'/user/contacts/show-edit-form/'+*{concactId}}"
                                     class="cursor-pointer font-medium hover:underline">
                                     <svg class="w-6 h-6 text-blue-600 dark:text-white" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"

@@ -15,6 +15,8 @@ public interface ContactService {
 
     public void deleteConatctById(String id);
 
+    public ContactDTO updateContactById(String contactId,ContactDTO contactDTO);
+
     public Page<Contact> getContactsByUser(String email,Integer pageNumber, Integer pageSize,String sortBy,String dir);
 
     public Page<Contact> findContactsByName(String email,String name,Integer pageNumber, Integer pageSize,String sortBy,String dir);

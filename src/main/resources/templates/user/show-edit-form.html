@@ -15,7 +15,7 @@
                 <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Explore the whole collection of
                     open-source web components and elements built with the utility classes from Tailwind</p>
             </div>
-            <form data-th-action="@{/user/contacts/adding-contact}" method="post" novalidate
+            <form data-th-action="@{'/user/contacts/update-contact/'+${contactId}}" method="post" novalidate
                 data-th-object="${contactDto}" class="max-w-2xl mx-auto" enctype="multipart/form-data">
                 <div class="grid md:grid-cols-2 md:gap-6">
                     <div class="mb-5">
@@ -152,7 +152,7 @@
                         in favourites??</label>
                 </div>
                 <button type="submit"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Update
                     your
                     Contact</button>
             </form>
