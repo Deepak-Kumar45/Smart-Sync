@@ -29,7 +29,6 @@ public class OperationalController {
         if (result.hasErrors()) {
             return "sign-up";
         }
-        System.out.println(signupDTO);
         userService.saveUser(signupDTO);
         httpSession.setAttribute("alertObject", new AlertMessage(
                 "Registration successfull!! Check your mail to activate your account", AlertMessageType.green));

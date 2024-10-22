@@ -34,6 +34,7 @@ public class SmartUserServiceImpl implements SmartUserService {
         queryUser.setPassword(encoder.encode(dto.getSignupPassword()));
         queryUser.setRoles(List.of(AppConstants.ROLE_USER));
         queryUser.setUserId(userId);
+        queryUser.setEnabled(false);
         queryUser.setPhoneNumber(dto.getSignupMobileNo());
 
         SmartUser insertedUser = userRepository.save(queryUser);

@@ -20,6 +20,9 @@ public class SpringSecurityConfig {
     @Autowired
     OAuth2SuccessHandler oAuth2SuccessHandler;
 
+    @Autowired
+    SelfRegisterFailureHandler registerFailureHandler;
+
     // create bean AuthenticationProvider
     @Bean
     AuthenticationProvider authenticationProvider() {
@@ -49,7 +52,8 @@ public class SpringSecurityConfig {
                     .defaultSuccessUrl("/user/dashboard")
                     .failureUrl("/login?error=true")
                     .usernameParameter("userMail")
-                    .passwordParameter("password");
+                    .passwordParameter("password")
+                    .failureHandler(registerFailureHandler);
         });
 
         httpSecurity.logout(logout -> {

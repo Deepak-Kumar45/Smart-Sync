@@ -56,7 +56,8 @@ public class SmartUser implements UserDetails{
 
     // account actvation info
     @Getter(value = AccessLevel.NONE)
-    private boolean enabled;
+    @Builder.Default
+    private boolean enabled = false;
     private boolean isPhoneNumberVarified;
     private boolean isMailVarified;
 
@@ -85,4 +86,8 @@ public class SmartUser implements UserDetails{
         return userMail;
     }
 
+    @Override
+    public boolean isEnabled() {
+        return this.enabled;
+    }
 }
