@@ -26,7 +26,7 @@ public class SmartUserServiceImpl implements SmartUserService {
     }
 
     @Override
-    public SmartUser saveUser(SignupDTO dto) {
+    public SmartUser saveUser(SignupDTO dto, String verficationToken) {
         String userId = UUID.randomUUID().toString();
         SmartUser queryUser = new SmartUser();
         queryUser.setSmartUserName(dto.getSignupFirstName() + " " + dto.getSignupLastName());
@@ -36,6 +36,7 @@ public class SmartUserServiceImpl implements SmartUserService {
         queryUser.setUserId(userId);
         queryUser.setEnabled(false);
         queryUser.setPhoneNumber(dto.getSignupMobileNo());
+        queryUser.setVerificationToken(verficationToken);
 
         SmartUser insertedUser = userRepository.save(queryUser);
         return insertedUser;
@@ -54,12 +55,6 @@ public class SmartUserServiceImpl implements SmartUserService {
     }
 
     @Override
-    public Optional<SmartUser> updateUser(SmartUser user) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
-    }
-
-    @Override
     public void deleteUser(String userId) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
@@ -69,6 +64,21 @@ public class SmartUserServiceImpl implements SmartUserService {
     public SmartUser getUserByMail(String email) {
         SmartUser user = userRepository.findByUserMail(email).orElse(null);
         return user;
+    }
+
+    @Override
+    public SmartUser getUserByVerficationToken(String verficationToken) {
+        SmartUser user = userRepository.findByVerificationToken(verficationToken).orElse(null);
+        return user;
+    }
+
+    @Override
+    public SmartUser updateUser(SmartUser user, String verificationToken) {
+        SmartUser oldUser=getUserByVerficationToken(verificationToken);
+        oldUser.setEnabled(user.isEnabled());
+        oldUser.setMailVarified(user.isMailVarified());
+        SmartUser updatedUser=userRepository.save(oldUser);
+        return updatedUser;
     }
 
 }

@@ -60,6 +60,7 @@ public class SmartUser implements UserDetails{
     private boolean enabled = false;
     private boolean isPhoneNumberVarified;
     private boolean isMailVarified;
+    private String verificationToken;
 
     @Enumerated(EnumType.STRING)
     @Builder.Default

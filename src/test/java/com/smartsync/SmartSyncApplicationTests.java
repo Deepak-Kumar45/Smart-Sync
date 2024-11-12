@@ -25,6 +25,15 @@ class SmartSyncApplicationTests {
     }
 
 	@Test
+	public void testMailWithFile(){
+		File file=new File("C:/Deepak/spring projects/smart_sync/Smart-Sync/src/main/resources/static/images/smartsynclogo.png"); 
+		if(file.exists()){
+			System.out.println("file's length: "+file.length());
+		}
+		emailService.sendMailWithFile("newavenger970@gmail.com", "Kuch nahi", file);
+	}
+
+	@Test
     public void testSendHTMLMail() {
 		String html="<!DOCTYPE html>\r\n" + //
 						"<html lang=\"en\">\r\n" + //
@@ -87,20 +96,6 @@ class SmartSyncApplicationTests {
 						"";
 		emailService.sendMailWithHtml("newavenger970@gmail.com", "SmartSync Verification", html);
     }
-	
-	@Test
-    public void testSendMailWithFile() {
-		File file=new File("C:/Deepak/spring projects/smart_sync/Smart-Sync/src/main/resources/static/images/smartsynclogo.png");
-		if(file.exists()){
-			System.out.println("file exists");
-		}else{
-			System.out.println("file doesn't exists");
-		}
-
-
-		emailService.sendMailWithFile("kumardeep4591@gmail.com", "SmartSync Verification", file);
-    }
-
 
 
 	@Test

@@ -1,6 +1,6 @@
 package com.smartsync.services;
 
-import java.io.File;
+import java.io.*;
 
 public interface EmailService {
 
@@ -11,6 +11,4 @@ public interface EmailService {
     public void sendMailWithHtml(String to,String subject,String html);
 
     public void sendMailWithFile(String to,String subject,File file);
-
-
 }

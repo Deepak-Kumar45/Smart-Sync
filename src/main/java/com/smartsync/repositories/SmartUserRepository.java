@@ -8,8 +8,11 @@ import org.springframework.stereotype.Repository;
 import com.smartsync.entities.SmartUser;
 
 
+
 @Repository
 public interface SmartUserRepository extends JpaRepository<SmartUser,String>{
     
     public Optional<SmartUser> findByUserMail(String userMail);
+
+    public Optional<SmartUser> findByVerificationToken(String verificationToken);
 }
